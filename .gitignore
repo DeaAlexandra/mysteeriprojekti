@@ -1,2 +1,4 @@
 bin/
 obj/
+Properties/launchSettings.json
+wwwroot/css/bootstrap/bootstrap.min.css
