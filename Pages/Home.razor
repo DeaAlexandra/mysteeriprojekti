@@ -1,27 +1,18 @@
 ﻿@page "/"
-
-@using System.IO
-@using Microsoft.AspNetCore.Components
-
 <PageTitle>Home</PageTitle>
 
 <h1>@message</h1>
 
 <div class="main-container">
     <div class="left-container">
-        <button>Char 1</button>
-        <button>Char 2</button>
-        <button @onclick="ChangeMessage">Char 3</button>
+        <button @onclick="ChangeMessage">Get Random Weapons</button>
     </div>
 
     <div class="right-container">
-        <button @onclick="ReadFile">Read File</button>
-        <ul>
-            @foreach (var character in characters)
-            {
-                <li>@character</li>
-            }
-        </ul>
+        @foreach (var weapon in randomWeapons)
+        {
+            <p>@weapon</p>
+        }
     </div>
 </div>
 
@@ -55,23 +46,18 @@
 
 @code {
     private string message = "Hello, world!";
-    private List<string> characters = new List<string>();
+    private List<string> weapons = new List<string> { "Hohtava kukka", "Taikasauva", "Miekka", "Kaulin", "Puunuija", "Iso vasara" };
+    private List<string> randomWeapons = new List<string>();
 
     private void ChangeMessage()
     {
-        message = "Hello, Char 3 clicked!";
+        message = "Random weapons selected!";
+        GetRandomWeapons();
     }
 
-    private void ReadFile()
+    private void GetRandomWeapons()
     {
-        var filePath = "Aseet.txt"; // Update with the actual file path
-        if (File.Exists(filePath))
-        {
-            characters = File.ReadAllLines(filePath).ToList();
-        }
-        else
-        {
-            characters = new List<string> { "File not found." };
-        }
+        Random random = new Random();
+        randomWeapons = weapons.OrderBy(x => random.Next()).Take(3).ToList();
     }
 }
