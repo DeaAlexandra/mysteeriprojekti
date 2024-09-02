@@ -5,10 +5,17 @@
 
 <div class="main-container">
     <div class="left-container">
-        <button @onclick="ChangeMessage">Get Random Weapons</button>
+        <button @onclick="ChangeMessage">Get Random Characters and Weapons</button>
     </div>
 
     <div class="right-container">
+        <h2>Random Characters</h2>
+        @foreach (var character in randomCharacters)
+        {
+            <p>@character</p>
+        }
+
+        <h2>Random Weapons</h2>
         @foreach (var weapon in randomWeapons)
         {
             <p>@weapon</p>
@@ -46,13 +53,22 @@
 
 @code {
     private string message = "Hello, world!";
+    private List<string> characters = new List<string> { "Kääpiö", "Prinsessa", "Ritari", "Velho", "Tyttö" };
     private List<string> weapons = new List<string> { "Hohtava kukka", "Taikasauva", "Miekka", "Kaulin", "Puunuija", "Iso vasara" };
+    private List<string> randomCharacters = new List<string>();
     private List<string> randomWeapons = new List<string>();
 
     private void ChangeMessage()
     {
-        message = "Random weapons selected!";
+        message = "Random characters and weapons selected!";
+        GetRandomCharacters();
         GetRandomWeapons();
+    }
+
+    private void GetRandomCharacters()
+    {
+        Random random = new Random();
+        randomCharacters = characters.OrderBy(x => random.Next()).Take(3).ToList();
     }
 
     private void GetRandomWeapons()
