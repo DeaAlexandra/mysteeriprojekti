@@ -1,5 +1,8 @@
 ﻿@page "/"
 
+@using System.IO
+@using Microsoft.AspNetCore.Components
+
 <PageTitle>Home</PageTitle>
 
 <h1>@message</h1>
@@ -12,9 +15,13 @@
     </div>
 
     <div class="right-container">
-        <button>Tools 1</button>
-        <button>Tools 2</button>
-        <button>Tools 3</button>
+        <button @onclick="ReadFile">Read File</button>
+        <ul>
+            @foreach (var character in characters)
+            {
+                <li>@character</li>
+            }
+        </ul>
     </div>
 </div>
 
@@ -48,12 +55,23 @@
 
 @code {
     private string message = "Hello, world!";
+    private List<string> characters = new List<string>();
 
     private void ChangeMessage()
     {
         message = "Hello, Char 3 clicked!";
     }
 
-    
-
+    private void ReadFile()
+    {
+        var filePath = "Aseet.txt"; // Update with the actual file path
+        if (File.Exists(filePath))
+        {
+            characters = File.ReadAllLines(filePath).ToList();
+        }
+        else
+        {
+            characters = new List<string> { "File not found." };
+        }
+    }
 }
