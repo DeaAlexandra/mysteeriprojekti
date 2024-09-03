@@ -1,79 +1,107 @@
-﻿@page "/"
-<PageTitle>Home</PageTitle>
+﻿@page "/home"
+@inject RandomizationService RandomizationService
 
-<h1>@message</h1>
+<PageTitle>Home</PageTitle>
 
 <div class="main-container">
     <div class="left-container">
-        <button @onclick="ChangeMessage">Get Random Characters and Weapons</button>
+        <h2>Hahmot</h2>
+        @foreach (var character in RandomizationService.RandomCharacters)
+        {
+            <div>
+                <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
+                <label for="@character" class="selectable-item">@character</label>
+            </div>
+        }
     </div>
 
     <div class="right-container">
-        <h2>Random Characters</h2>
-        @foreach (var character in randomCharacters)
+        <h2>Aseet</h2>
+        @foreach (var weapon in RandomizationService.RandomWeapons)
         {
-            <p>@character</p>
-        }
-
-        <h2>Random Weapons</h2>
-        @foreach (var weapon in randomWeapons)
-        {
-            <p>@weapon</p>
+            <div>
+                <input type="radio" id="@weapon" name="weapons" value="@weapon" class="hidden-radio" onchange="checkSelection()">
+                <label for="@weapon" class="selectable-item">@weapon</label>
+            </div>
         }
     </div>
 </div>
 
+<div class="button-container">
+    <img 
+        id="continue-button" 
+        class="continue-button" 
+        src="6188818.png" 
+        alt="Continue" 
+        style="display: none;" 
+        onclick="handleContinueClick()"
+    />
+</div>
+
 <style>
+    :root {
+        --side-margin: 300px;
+    }
+
     .main-container {
         display: flex;
-        justify-content: space-between;
-        padding: 20px;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 150px;
         height: 100vh;
     }
 
-    .left-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+    .left-container, .right-container {
+        width: 45%;
+        margin-left: var(--side-margin);
+        margin-right: var(--side-margin);
     }
 
-    .right-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
+    .hidden-radio {
+        display: none;
     }
 
-    .left-container button,
-    .right-container button {
-        margin: 10px 0;
+    .selectable-item {
+        display: inline-block;
+        padding: 5px;
+        cursor: pointer;
+    }
+
+    .hidden-radio:checked + .selectable-item {
+        border: 2px solid gray;
+        border-radius: 5px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh; /* Adjusted height to move the button up */
+    }
+
+    .continue-button {
+        width: 100px; /* Adjust the size of the image */
+        height: auto;
+        cursor: pointer;
+        margin-top: -200vh; /* Adjusted margin to move the button up */
     }
 </style>
 
-@code {
-    private string message = "Hello, world!";
-    private List<string> characters = new List<string> { "Kääpiö", "Prinsessa", "Ritari", "Velho", "Tyttö" };
-    private List<string> weapons = new List<string> { "Hohtava kukka", "Taikasauva", "Miekka", "Kaulin", "Puunuija", "Iso vasara" };
-    private List<string> randomCharacters = new List<string>();
-    private List<string> randomWeapons = new List<string>();
+<script>
+    function checkSelection() {
+        const characterSelected = document.querySelector('input[name="characters"]:checked');
+        const weaponSelected = document.querySelector('input[name="weapons"]:checked');
+        const continueButton = document.getElementById('continue-button');
 
-    private void ChangeMessage()
-    {
-        message = "Random characters and weapons selected!";
-        GetRandomCharacters();
-        GetRandomWeapons();
+        if (characterSelected && weaponSelected) {
+            continueButton.style.display = 'block';
+        } else {
+            continueButton.style.display = 'none';
+        }
     }
 
-    private void GetRandomCharacters()
-    {
-        Random random = new Random();
-        randomCharacters = characters.OrderBy(x => random.Next()).Take(3).ToList();
+    function handleContinueClick() {
+        // Add your continue button click handling logic here
+        alert('Continue button clicked!');
     }
-
-    private void GetRandomWeapons()
-    {
-        Random random = new Random();
-        randomWeapons = weapons.OrderBy(x => random.Next()).Take(3).ToList();
-    }
-}
+</script>
