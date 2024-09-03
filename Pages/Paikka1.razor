@@ -3,8 +3,74 @@
 <PageTitle>Paikka 1</PageTitle>
 
 <div class="main-container">
-    <div class="left-container">
-        <h2>Paikka 1</h2>
-        <p>Tässä on paikka 1.</p>
+    <div class="text-container">
+        <h2>Tervetuloa paikkaan 1</h2>
+        <p>Tässä paikassa on jotain mielenkiintoista.</p>
     </div>
+
+    <div class="button-container">
+        <img 
+            id="continue-button" 
+            class="continue-button" 
+            src="6188818.png" 
+            alt="Continue" 
+            style="display: none;" 
+            onclick="handleContinueClick()"
+        />
+
+        <button @onclick="handleContinueClick" class="continue-button">Jatka</button>
+        <button @onclick="handleContinueClick2" class="continue-button">Jatka2</button>
+
+    </div>
+
 </div>
+
+<style>
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .text-container {
+        width: 50%;
+        text-align: center;
+        margin-bottom: 20px; /* Add some space between text and buttons */
+    }
+
+    .button-container {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .continue-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    .continue-button:hover {
+        /* Add hover styles here */
+    }
+</style>
+
+@code {
+    private void handleContinueClick()
+    {
+        NavigationManager.NavigateTo("/paikka2");
+    }
+
+    private void handleContinueClick2()
+    {
+        NavigationManager.NavigateTo("/paikka3");
+    }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+}
