@@ -3,6 +3,10 @@
 
 <PageTitle>Home</PageTitle>
 
+@code {
+    private List<string> etsittavat = new List<string> { "Kirja", "Talismaani", "Kirstalli" };
+}
+
 <div class="main-container">
     <div class="left-container">
         <h2>Hahmot</h2>
@@ -16,12 +20,12 @@
     </div>
 
     <div class="right-container">
-        <h2>Aseet</h2>
-        @foreach (var weapon in RandomizationService.RandomWeapons)
+        <h2>Mitä lähdet etsimään?</h2>
+        @foreach (var item in etsittavat)
         {
             <div>
-                <input type="radio" id="@weapon" name="weapons" value="@weapon" class="hidden-radio" onchange="checkSelection()">
-                <label for="@weapon" class="selectable-item">@weapon</label>
+                <input type="radio" id="@item" name="weapons" value="@item" class="hidden-radio" onchange="checkSelection()">
+                <label for="@item" class="selectable-item">@item</label>
             </div>
         }
     </div>
@@ -88,6 +92,7 @@
 </style>
 
 <script>
+
     function checkSelection() {
         const characterSelected = document.querySelector('input[name="characters"]:checked');
         const weaponSelected = document.querySelector('input[name="weapons"]:checked');
