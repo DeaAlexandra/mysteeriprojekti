@@ -1,0 +1,20 @@
+@page "/debug"
+
+
+<p>Tässä on navroom.</p>
+<nav>
+    <button @onclick='() => NavigateTo("/home")'>Home</button>
+    <button @onclick='() => NavigateTo("/paikka1")'>paikka1</button>
+    <button @onclick='() => NavigateTo("/")'>StartGame</button>
+    
+</nav>
+
+@code {
+    private void NavigateTo(string url)
+    {
+        NavigationManager?.NavigateTo(url);
+    }
+
+    [Inject]
+    private NavigationManager? NavigationManager { get; set; }
+}
