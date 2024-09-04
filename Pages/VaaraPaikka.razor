@@ -1,0 +1,24 @@
+@page "/VaaraPaikka"
+
+<PageTitle>Väärä paikka</PageTitle>
+
+<div class="main-container">
+    <div class="text-container">
+        <h2>Hups</h2>
+        <p>Menit väärään paikkaan.</p>
+        <p>Paina nappia palataksesi takaisin.</p>
+    </div>
+    <div class="button-container">
+        <img id="continue-button" class="continue-button" src="6188818.png" alt="Continue" style="display: none;"
+            GoBack="handleContinueClick()" />
+    </div>
+</div>
+
+@code {
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/paikka1");
+    }
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
+}
