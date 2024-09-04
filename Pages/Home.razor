@@ -1,10 +1,15 @@
 ﻿@page "/home"
-@inject RandomizationService RandomizationService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 
 @code {
     private List<string> etsittavat = new List<string> { "Kirja", "Talismaani", "Kirstalli" };
+
+    private void handleContinueClick()
+    {
+        NavigationManager.NavigateTo("/valinta");
+    }
 }
 
 <div class="main-container">
@@ -28,28 +33,10 @@
                 <img src="Pictures/Characters/Hunter.jpg" alt="Metsästäjä" class="image-button" />
             </label>
         </div>
-
-        
-    @* @foreach (var character in RandomizationService.RandomCharacters)
-    {
-        <div>
-            <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
-            <label for="@character" class="selectable-item">@character</label>
-        </div>
-    } *@
     </div>
 
     <div class="right-container">
         <h2>Mitä lähdet etsimään?</h2>
-        @*
-        @foreach (var item in etsittavat)
-        {
-                <div>
-                    <input type="radio" id="@item" name="weapons" value="@item" class="hidden-radio" onchange="checkSelection()">
-                    <label for="@item" class="selectable-item">@item</label>
-                </div>
-        }
-        *@
         <div>
             <input type="radio" id="item1" name="etsittavat" value="Kirja" class="hidden-radio" onchange="checkSelection()">
             <label for="item1" class="selectable-item">
@@ -70,42 +57,41 @@
                 <img src="Pictures/Search_items/Chrystal_large.jpg" alt="Kirstalli" class="image-button" />
             </label>
         </div>
-
-
     </div>
 </div>
 
-<div class="button-container">
+<div class="popup-button-container">
     <img 
         id="continue-button" 
         class="continue-button" 
         src="6188818.png" 
         alt="Continue" 
         style="display: none;" 
-        onclick="handleContinueClick()"
+        @onclick="handleContinueClick" 
     />
 </div>
 
 <style>
     :root {
-        --side-margin: 300px;
+        --side-margin: 20px;
     }
 
     .main-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-image: url("/Pictures/Starting_page_background.jpg"); /* Päivitetty polku taustakuvalle */
+        background-image: url("/Pictures/Starting_page_background.jpg");
         background-size: cover;
         background-position: center;
+        position: relative; /* Make sure the main container doesn't affect the button */
     }
 
     .left-container, .right-container {
         width: 45%;
-        margin-left: var(--side-margin);
-        margin-right: var(--side-margin);
+        margin: 0 var(--side-margin);
+        text-align: center;
     }
 
     .hidden-radio {
@@ -123,19 +109,18 @@
         border-radius: 5px;
     }
 
-    .button-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 80vh; /* Adjusted height to move the button up */
+    .popup-button-container {
+        position: fixed; /* Keep the button fixed in the viewport */
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Center alignment */
+        z-index: 10; /* Ensure the button is above other content */
     }
 
     .continue-button {
         width: 100px; /* Adjust the size of the image */
         height: auto;
         cursor: pointer;
-        margin-top: -200vh; /* Adjusted margin to move the button up */
-        
     }
 
     .image-button {
@@ -145,10 +130,9 @@
 </style>
 
 <script>
-
     function checkSelection() {
         const characterSelected = document.querySelector('input[name="characters"]:checked');
-        const weaponSelected = document.querySelector('input[name="weapons"]:checked');
+        const weaponSelected = document.querySelector('input[name="etsittavat"]:checked');
         const continueButton = document.getElementById('continue-button');
 
         if (characterSelected && weaponSelected) {
@@ -156,10 +140,5 @@
         } else {
             continueButton.style.display = 'none';
         }
-    }
-
-    function handleContinueClick() {
-        // Add your continue button click handling logic here
-        alert('Continue button clicked!');
     }
 </script>
