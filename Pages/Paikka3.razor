@@ -1,22 +1,16 @@
-@page "/paikka1"
+@page "/paikka3"
 
-<PageTitle>Paikka 1</PageTitle>
+<PageTitle>Paikka 3</PageTitle>
 
 <div class="main-container">
     <div class="text-container">
-        <h2>Tervetuloa paikkaan 1</h2>
+        <h2>Tervetuloa paikkaan 3</h2>
         <p>Tässä paikassa on jotain mielenkiintoista.</p>
     </div>
 
     <div class="button-container">
-        <img 
-            id="continue-button" 
-            class="continue-button" 
-            src="6188818.png" 
-            alt="Continue" 
-            style="display: none;" 
-            onclick="handleContinueClick()"
-        />
+        <img id="continue-button" class="continue-button" src="6188818.png" alt="Continue" style="display: none;"
+            onclick="handleContinueClick()" />
 
         <button @onclick="handleContinueClick" class="continue-button">Jatka</button>
         <button @onclick="handleContinueClick2" class="continue-button">Jatka2</button>
@@ -32,15 +26,19 @@
         justify-content: center;
         align-items: center;
         height: 100vh;
-        background-image: url("/Pictures/Landscape_1.jpg"); /* Päivitetty polku taustakuvalle */
+        background-image: url("/Pictures/Landscape_3.jpg");
+        /* Määritä taustakuva tähän */
         background-size: cover;
+        /* Tämä varmistaa, että kuva kattaa koko taustan */
         background-position: center;
+        /* Asettaa kuvan keskelle */
     }
 
     .text-container {
         width: 50%;
         text-align: center;
-        margin-bottom: 20px; /* Add some space between text and buttons */
+        margin-bottom: 20px;
+        /* Add some space between text and buttons */
     }
 
     .button-container {
