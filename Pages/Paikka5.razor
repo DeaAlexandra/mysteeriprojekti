@@ -14,6 +14,8 @@
 
         <button @onclick="handleContinueClick" class="continue-button">Etene paikkaan 1</button>
         <button @onclick="handleContinueClick2" class="continue-button">Jatka etsimistä</button>
+        <button @onclick="GoBack" class="continue-button">Palaa edelliselle sivulle</button>
+        <!-- Lisätty paluu-nappi -->
 
     </div>
 
@@ -72,6 +74,20 @@
         NavigationManager.NavigateTo("/VaaraPaikka");
     }
 
+    private void GoBack()
+    {
+        JS.InvokeVoidAsync("goBack");
+    }
+
     [Inject]
     private NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    private IJSRuntime JS { get; set; }
 }
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

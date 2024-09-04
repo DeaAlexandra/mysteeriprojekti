@@ -10,7 +10,11 @@
     </div>
     <div class="button-container">
         <img id="continue-button" class="continue-button" src="6188818.png" alt="Continue" style="display: none;"
-            GoBack="handleContinueClick()" />
+            onclick="handleContinueClick()" />
+
+        <button @onclick="GoBack" class="continue-button">Palaa edelliselle sivulle</button>
+        <!-- Lisätty paluu-nappi -->
+
     </div>
 </div>
 
@@ -59,8 +63,18 @@
 @code {
     private void GoBack()
     {
-        NavigationManager.NavigateTo("/paikka1");
+        JS.InvokeVoidAsync("goBack");
     }
+
     [Inject]
     private NavigationManager NavigationManager { get; set; }
+
+    [Inject]
+    private IJSRuntime JS { get; set; }
 }
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

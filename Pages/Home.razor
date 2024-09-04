@@ -28,7 +28,7 @@
             </label>
         </div>
         <div>
-            <input type="radio" id="hahmo3" name="characters" value="Metsästäjä" class="hidden-radio" onchange="checkSelection()">
+            <input type="radio" id="hahmo3" name="characters" value="Metsästäjä" class="hidden-radio" onchange="checkSelection(); restrictOptions();">
             <label for="hahmo3" class="selectable-item">
                 <img src="Pictures/Characters/Hunter.jpg" alt="Metsästäjä" class="image-button" />
             </label>
@@ -127,6 +127,11 @@
         width: 100px; /* Adjust the size as needed */
         height: auto;
     }
+
+    .disabled {
+        opacity: 0.5; /* Makes the option look disabled */
+        pointer-events: none; /* Prevents clicking on the disabled option */
+    }
 </style>
 
 <script>
@@ -139,6 +144,20 @@
             continueButton.style.display = 'block';
         } else {
             continueButton.style.display = 'none';
+        }
+    }
+
+    function restrictOptions() {
+        const hunterSelected = document.getElementById('hahmo3').checked;
+        const crystalOption = document.getElementById('item3');
+        const crystalLabel = document.querySelector('label[for="item3"]');
+
+        if (hunterSelected) {
+            crystalOption.disabled = true;
+            crystalLabel.classList.add('disabled');
+        } else {
+            crystalOption.disabled = false;
+            crystalLabel.classList.remove('disabled');
         }
     }
 </script>
