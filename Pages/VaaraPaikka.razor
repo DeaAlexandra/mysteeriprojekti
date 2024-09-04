@@ -4,18 +4,21 @@
 
 <div class="main-container">
     <div class="text-container">
-        <h2>Tervetuloa paikkaan 1</h2>
-        <p>Tässä paikassa on jotain mielenkiintoista.</p>
+        <h2>Hups</h2>
+        <p>Menit väärään paikkaan.</p>
+        <p>Paina nappia palataksesi takaisin.</p>
     </div>
     <div class="button-container">
         <img id="continue-button" class="continue-button" src="6188818.png" alt="Continue" style="display: none;"
-            onclick="handleContinueClick()" />
+            GoBack="handleContinueClick()" />
     </div>
 </div>
 
 @code {
     private void GoBack()
     {
-        NavigationManager.NavigateTo("/Paikka1");
+        NavigationManager.NavigateTo("/paikka1");
     }
+    [Inject]
+    private NavigationManager NavigationManager { get; set; }
 }
