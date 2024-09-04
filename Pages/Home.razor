@@ -12,10 +12,10 @@
         <h2>Hahmot</h2>
         @foreach (var character in RandomizationService.RandomCharacters)
         {
-            <div>
-                <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
-                <label for="@character" class="selectable-item">@character</label>
-            </div>
+                <div>
+                    <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
+                    <label for="@character" class="selectable-item">@character</label>
+                </div>
         }
     </div>
 
@@ -23,10 +23,10 @@
         <h2>Mitä lähdet etsimään?</h2>
         @foreach (var item in etsittavat)
         {
-            <div>
-                <input type="radio" id="@item" name="weapons" value="@item" class="hidden-radio" onchange="checkSelection()">
-                <label for="@item" class="selectable-item">@item</label>
-            </div>
+                <div>
+                    <input type="radio" id="@item" name="weapons" value="@item" class="hidden-radio" onchange="checkSelection()">
+                    <label for="@item" class="selectable-item">@item</label>
+                </div>
         }
     </div>
 </div>
@@ -49,10 +49,13 @@
 
     .main-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        padding: 150px;
+        align-items: center;
         height: 100vh;
+        background-image: url("/Pictures/Starting_page_background.jpg"); /* Päivitetty polku taustakuvalle */
+        background-size: cover;
+        background-position: center;
     }
 
     .left-container, .right-container {
