@@ -10,6 +10,7 @@
 <div class="main-container">
     <div class="left-container">
         <h2>Hahmot</h2>
+<<<<<<< HEAD
         <div>
             <input type="radio" id="hahmo1" name="characters" value="Prinsessa" class="hidden-radio" onchange="checkSelection()">
             <label for="hahmo1" class="selectable-item">
@@ -37,6 +38,15 @@
             <label for="@character" class="selectable-item">@character</label>
         </div>
     } *@
+=======
+        @foreach (var character in RandomizationService.RandomCharacters)
+        {
+                <div>
+                    <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
+                    <label for="@character" class="selectable-item">@character</label>
+                </div>
+        }
+>>>>>>> 46b669021250cef210d298f94e98ea7120669924
     </div>
 
     <div class="right-container">
@@ -44,10 +54,10 @@
         @*
         @foreach (var item in etsittavat)
         {
-            <div>
-                <input type="radio" id="@item" name="weapons" value="@item" class="hidden-radio" onchange="checkSelection()">
-                <label for="@item" class="selectable-item">@item</label>
-            </div>
+                <div>
+                    <input type="radio" id="@item" name="weapons" value="@item" class="hidden-radio" onchange="checkSelection()">
+                    <label for="@item" class="selectable-item">@item</label>
+                </div>
         }
         *@
         <div>
@@ -93,10 +103,13 @@
 
     .main-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
-        align-items: flex-start;
-        padding: 150px;
+        align-items: center;
         height: 100vh;
+        background-image: url("/Pictures/Starting_page_background.jpg"); /* Päivitetty polku taustakuvalle */
+        background-size: cover;
+        background-position: center;
     }
 
     .left-container, .right-container {
