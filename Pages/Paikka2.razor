@@ -12,7 +12,7 @@
         <img id="continue-button" class="continue-button" src="6188818.png" alt="Continue" style="display: none;"
             onclick="handleContinueClick()" />
 
-        <button @onclick="handleContinueClick" class="continue-button">Jatka</button>
+        <button @onclick="handleContinueClick" class="continue-button">Jatka eteenpäin</button>
         <button @onclick="handleContinueClick2" class="continue-button">Jatka2</button>
 
     </div>
@@ -64,12 +64,12 @@
 @code {
     private void handleContinueClick()
     {
-        NavigationManager.NavigateTo("/paikka2");
+        NavigationManager.NavigateTo("/hirvio");
     }
 
     private void handleContinueClick2()
     {
-        NavigationManager.NavigateTo("/paikka3");
+        NavigationManager.NavigateTo("/VaaraPaikka");
     }
 
     [Inject]
