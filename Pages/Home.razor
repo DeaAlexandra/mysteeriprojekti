@@ -10,17 +10,38 @@
 <div class="main-container">
     <div class="left-container">
         <h2>Hahmot</h2>
-        @foreach (var character in RandomizationService.RandomCharacters)
-        {
-                <div>
-                    <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
-                    <label for="@character" class="selectable-item">@character</label>
-                </div>
-        }
+        <div>
+            <input type="radio" id="hahmo1" name="characters" value="Prinsessa" class="hidden-radio" onchange="checkSelection()">
+            <label for="hahmo1" class="selectable-item">
+                <img src="Pictures/Characters/Princess.jpg" alt="Prinsessa" class="image-button" />
+            </label>
+        </div>
+        <div>
+            <input type="radio" id="hahmo2" name="characters" value="Ritari" class="hidden-radio" onchange="checkSelection()">
+            <label for="hahmo2" class="selectable-item">
+                <img src="Pictures/Characters/Gnome.jpg" alt="Kääpiö" class="image-button" />
+            </label>
+        </div>
+        <div>
+            <input type="radio" id="hahmo3" name="characters" value="Metsästäjä" class="hidden-radio" onchange="checkSelection()">
+            <label for="hahmo3" class="selectable-item">
+                <img src="Pictures/Characters/Hunter.jpg" alt="Metsästäjä" class="image-button" />
+            </label>
+        </div>
+
+        
+    @* @foreach (var character in RandomizationService.RandomCharacters)
+    {
+        <div>
+            <input type="radio" id="@character" name="characters" value="@character" class="hidden-radio" onchange="checkSelection()">
+            <label for="@character" class="selectable-item">@character</label>
+        </div>
+    } *@
     </div>
 
     <div class="right-container">
         <h2>Mitä lähdet etsimään?</h2>
+        @*
         @foreach (var item in etsittavat)
         {
                 <div>
@@ -28,6 +49,29 @@
                     <label for="@item" class="selectable-item">@item</label>
                 </div>
         }
+        *@
+        <div>
+            <input type="radio" id="item1" name="etsittavat" value="Kirja" class="hidden-radio" onchange="checkSelection()">
+            <label for="item1" class="selectable-item">
+                <img src="Pictures/Search_items/Book_small.jpg" alt="Kirja" class="image-button" />
+            </label>
+        </div>
+
+        <div>
+            <input type="radio" id="item2" name="etsittavat" value="Talismaani" class="hidden-radio" onchange="checkSelection()">
+            <label for="item2" class="selectable-item">
+                <img src="Pictures/Search_items/Amulet_large.jpg" alt="Talismaani" class="image-button" />
+            </label>
+        </div>
+
+        <div>
+            <input type="radio" id="item3" name="etsittavat" value="Kirstalli" class="hidden-radio" onchange="checkSelection()">
+            <label for="item3" class="selectable-item">
+                <img src="Pictures/Search_items/Chrystal_large.jpg" alt="Kirstalli" class="image-button" />
+            </label>
+        </div>
+
+
     </div>
 </div>
 
@@ -91,6 +135,12 @@
         height: auto;
         cursor: pointer;
         margin-top: -200vh; /* Adjusted margin to move the button up */
+        
+    }
+
+    .image-button {
+        width: 100px; /* Adjust the size as needed */
+        height: auto;
     }
 </style>
 
